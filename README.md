@@ -141,7 +141,7 @@ client = GeminiComputerUseClient(
 
 **Action Planning**
 
-- `execute_action(instruction, capture_result=True)` - Get AI guidance for actions
+- `analyze_action(instruction, capture_result=True)` - Get AI guidance for actions
 
 **Utility**
 
@@ -214,7 +214,7 @@ description = client.describe_screen()
 Get AI suggestions for automation tasks:
 
 ```python
-result = client.execute_action(
+result = client.analyze_action(
     "How would I click the save button in the current application?"
 )
 ```

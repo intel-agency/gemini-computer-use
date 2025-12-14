@@ -60,9 +60,9 @@ def main():
     )
     print(f"Analysis: {analysis}")
     
-    # Example 5: Execute action instruction
-    print("\n--- Example 5: Action Instruction ---")
-    result = client.execute_action(
+    # Example 5: Analyze action instruction
+    print("\n--- Example 5: Action Analysis ---")
+    result = client.analyze_action(
         "Click on the top-right corner of the screen",
         capture_result=False
     )

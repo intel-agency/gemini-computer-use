@@ -8,13 +8,23 @@ import pyautogui
 
 
 class ComputerTools:
-    """Tools for computer interaction including screen capture and input control"""
+    """Tools for computer interaction including screen capture and input control
     
-    def __init__(self):
-        """Initialize computer tools"""
-        # Disable PyAutoGUI fail-safe for automated testing
-        pyautogui.FAILSAFE = True
-        pyautogui.PAUSE = 0.1
+    Note: This class modifies global PyAutoGUI settings:
+    - FAILSAFE is enabled by default (move mouse to corner to abort)
+    - PAUSE is set to 0.1 seconds between actions for safety
+    """
+    
+    def __init__(self, failsafe: bool = True, pause: float = 0.1):
+        """Initialize computer tools
+        
+        Args:
+            failsafe: Enable PyAutoGUI fail-safe (move mouse to corner to abort)
+            pause: Time to pause between PyAutoGUI actions in seconds
+        """
+        # Configure PyAutoGUI settings (these are global)
+        pyautogui.FAILSAFE = failsafe
+        pyautogui.PAUSE = pause
     
     def capture_screen(self, region: Optional[Tuple[int, int, int, int]] = None) -> Image.Image:
         """

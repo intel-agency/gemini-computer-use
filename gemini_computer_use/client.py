@@ -185,18 +185,21 @@ class GeminiComputerUseClient:
         prompt = f"Find the following on this screen and describe its location: {target}"
         return self.analyze_screen(prompt)
     
-    def execute_action(self, instruction: str, capture_result: bool = True) -> Dict[str, Any]:
+    def analyze_action(self, instruction: str, capture_result: bool = True) -> Dict[str, Any]:
         """
-        Execute a computer action based on natural language instruction.
+        Analyze how to execute a computer action based on natural language instruction.
+        
+        Note: This method only provides analysis and guidance. It does not execute
+        the actual action. Use the tools methods directly to perform actions.
         
         Args:
             instruction: Natural language instruction (e.g., "click the submit button")
-            capture_result: Whether to capture screen after action
+            capture_result: Whether to capture screen after analysis
             
         Returns:
-            Dictionary with action result and optional screen capture
+            Dictionary with instruction, AI analysis, and optional screen capture
         """
-        # First, analyze the screen to understand what to do
+        # Analyze the screen to understand what to do
         analysis_prompt = f"""
         Analyze this screen and determine how to execute this instruction: {instruction}
         
@@ -211,11 +214,10 @@ class GeminiComputerUseClient:
         result = {
             "instruction": instruction,
             "analysis": analysis,
-            "executed": False,
         }
         
         if capture_result:
-            result["screen_after"] = self.tools.capture_screen()
+            result["screen_capture"] = self.tools.capture_screen()
         
         return result
     
